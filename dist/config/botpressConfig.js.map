@@ -1,0 +1,1 @@
+{"version":3,"file":"botpressConfig.js","sourceRoot":"","sources":["../../src/config/botpressConfig.ts"],"names":[],"mappings":"AAAA,OAAO,MAAM,MAAM,QAAQ,CAAC;AAC5B,MAAM,CAAC,MAAM,EAAE,CAAC;AAEhB,MAAM,CAAC,MAAM,iBAAiB,GAAG,GAAG,EAAE;IACpC,OAAO;QACL,MAAM,EAAE,OAAO,CAAC,GAAG,CAAC,gBAAgB;QACpC,KAAK,EAAE,OAAO,CAAC,GAAG,CAAC,eAAe;KACnC,CAAC;AACJ,CAAC,CAAC"}
