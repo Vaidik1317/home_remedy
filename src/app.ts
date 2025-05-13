@@ -36,4 +36,8 @@ app.get("/", (req, res) => {
   res.send("Backend.");
 });
 
+app.get("/test", (req, res) => {
+  res.send("Test route is working");
+});
+
 export default app;
