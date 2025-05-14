@@ -47,6 +47,10 @@ export const generateChatCompletion = async (req, res) => {
     });
   }
 };
+console.log(
+  "🚀 ~ generateChatCompletion ~ generateChatCompletion:",
+  generateChatCompletion
+);
 
 export const sendChatsToUser = async (
   req: Request,

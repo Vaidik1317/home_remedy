@@ -9,6 +9,7 @@ import {
 
 //Protected API
 const chatRoutes = Router();
+console.log("🚀 ~ chatRoutes:", chatRoutes);
 chatRoutes.post(
   "/new",
   validate(chatCompletionValidator),

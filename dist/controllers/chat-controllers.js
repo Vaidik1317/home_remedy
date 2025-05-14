@@ -38,6 +38,7 @@ export const generateChatCompletion = async (req, res) => {
         });
     }
 };
+console.log("🚀 ~ generateChatCompletion ~ generateChatCompletion:", generateChatCompletion);
 export const sendChatsToUser = async (req, res, next) => {
     try {
         const user = await User.findById(res.locals.jwtData.id);
