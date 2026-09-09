@@ -10,7 +10,7 @@ export const getAllUsers = async (req, res, next) => {
     }
     catch (error) {
         console.log(error);
-        return res.status(500).json({ message: "ERROR", cause: error.message });
+        return res.status(500).json({ message: "ERROR", cause: error?.message });
     }
 };
 export const userSignup = async (req, res, next) => {
@@ -50,7 +50,7 @@ export const userSignup = async (req, res, next) => {
     }
     catch (error) {
         console.log(error);
-        return res.status(500).json({ message: "ERROR", cause: error.message });
+        return res.status(500).json({ message: "ERROR", cause: error?.message });
     }
 };
 export const userLogin = async (req, res, next) => {
@@ -92,7 +92,7 @@ export const userLogin = async (req, res, next) => {
     }
     catch (error) {
         console.log(error);
-        return res.status(500).json({ message: "ERROR", cause: error.message });
+        return res.status(500).json({ message: "ERROR", cause: error?.message });
     }
 };
 export const verifyUser = async (req, res, next) => {
@@ -111,7 +111,7 @@ export const verifyUser = async (req, res, next) => {
     }
     catch (error) {
         console.log(error);
-        return res.status(500).json({ message: "ERROR", cause: error.message });
+        return res.status(500).json({ message: "ERROR", cause: error?.message });
     }
 };
 export const userLogout = async (req, res, next) => {
@@ -138,7 +138,7 @@ export const userLogout = async (req, res, next) => {
     }
     catch (error) {
         console.log(error);
-        return res.status(500).json({ message: "ERROR", cause: error.message });
+        return res.status(500).json({ message: "ERROR", cause: error?.message });
     }
 };
 //# sourceMappingURL=user-controllers.js.map

@@ -48,7 +48,7 @@ export const generateChatCompletion = async (
     console.error("Gemini API Error:", error);
     return res.status(500).json({
       message: "Gemini API error",
-      error: error.message,
+      error: (error as any)?.message,
     });
   }
 };
@@ -69,7 +69,7 @@ export const sendChatsToUser = async (
     return res.status(200).json({ message: "OK", chats: user.chats });
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ message: "ERROR", cause: error.message });
+    return res.status(500).json({ message: "ERROR", cause: (error as any)?.message });
   }
 };
 
@@ -91,6 +91,6 @@ export const deleteChats = async (
     return res.status(200).json({ message: "OK" });
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ message: "ERROR", cause: error.message });
+    return res.status(500).json({ message: "ERROR", cause: (error as any)?.message });
   }
 };

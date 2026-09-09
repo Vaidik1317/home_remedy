@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import { config } from "dotenv";
 import morgan from "morgan";
 import appRouter from "./routes/index.js";
@@ -18,7 +18,7 @@ const allowedOrigins = [
 
 app.use(
   cors({
-    origin: function(origin, callback) {
+    origin: function(origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) {
       // Allow requests with no origin (like mobile apps or curl requests)
       if (!origin) return callback(null, true);
       
@@ -45,11 +45,11 @@ if (process.env.NODE_ENV !== "production") {
 // Routes
 app.use("/api/v1", appRouter);
 
-app.get("/", (req, res) => {
+app.get("/", (req: Request, res: Response) => {
   res.send("Backend.");
 });
 
-app.get("/test", (req, res) => {
+app.get("/test", (req: Request, res: Response) => {
   res.send("Test route is working");
 });
 
