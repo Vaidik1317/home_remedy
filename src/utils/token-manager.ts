@@ -26,7 +26,18 @@ export const verifyToken = (
   res: Response,
   next: NextFunction
 ) => {
-  const token = req.signedCookies?.[COOKIE_NAME] || req.cookies?.[COOKIE_NAME];
+  let token: string | undefined;
+
+  // Check Authorization header first
+  const authHeader = req.headers.authorization;
+  if (authHeader && authHeader.startsWith("Bearer ")) {
+    token = authHeader.split(" ")[1];
+  }
+
+  // Fallback to cookies
+  if (!token) {
+    token = req.signedCookies?.[COOKIE_NAME] || req.cookies?.[COOKIE_NAME];
+  }
 
   if (!token) {
     return res.status(401).json({ message: "Token Not Received" });

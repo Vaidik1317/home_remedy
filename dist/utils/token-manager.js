@@ -14,7 +14,16 @@ export const createToken = (id, email, expiresIn) => {
     }
 };
 export const verifyToken = (req, res, next) => {
-    const token = req.signedCookies?.[COOKIE_NAME] || req.cookies?.[COOKIE_NAME];
+    let token;
+    // Check Authorization header first
+    const authHeader = req.headers.authorization;
+    if (authHeader && authHeader.startsWith("Bearer ")) {
+        token = authHeader.split(" ")[1];
+    }
+    // Fallback to cookies
+    if (!token) {
+        token = req.signedCookies?.[COOKIE_NAME] || req.cookies?.[COOKIE_NAME];
+    }
     if (!token) {
         return res.status(401).json({ message: "Token Not Received" });
     }

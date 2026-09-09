@@ -10,7 +10,7 @@ export const getAllUsers = async (req, res, next) => {
     }
     catch (error) {
         console.log(error);
-        return res.status(200).json({ message: "ERROR", cause: error.message });
+        return res.status(500).json({ message: "ERROR", cause: error.message });
     }
 };
 export const userSignup = async (req, res, next) => {
@@ -26,29 +26,31 @@ export const userSignup = async (req, res, next) => {
         // create token and store cookie
         res.clearCookie(COOKIE_NAME, {
             httpOnly: true,
-            // domain: "localhost",
+            domain: process.env.NODE_ENV === "production" ? undefined : "localhost",
             signed: true,
             path: "/",
+            secure: true,
+            sameSite: "none"
         });
         const token = createToken(user._id.toString(), user.email, "7d");
         const expires = new Date();
         expires.setDate(expires.getDate() + 7);
         res.cookie(COOKIE_NAME, token, {
             path: "/",
-            // domain: "localhost",
+            domain: process.env.NODE_ENV === "production" ? undefined : "localhost",
             expires,
             httpOnly: true,
             signed: true,
             secure: true,
-            sameSite: "none",
+            sameSite: "none"
         });
         return res
             .status(201)
-            .json({ message: "OK", name: user.name, email: user.email });
+            .json({ message: "OK", name: user.name, email: user.email, token });
     }
     catch (error) {
         console.log(error);
-        return res.status(200).json({ message: "ERROR", cause: error.message });
+        return res.status(500).json({ message: "ERROR", cause: error.message });
     }
 };
 export const userLogin = async (req, res, next) => {
@@ -66,29 +68,31 @@ export const userLogin = async (req, res, next) => {
         // create token and store cookie
         res.clearCookie(COOKIE_NAME, {
             httpOnly: true,
-            // domain: "localhost",
+            domain: process.env.NODE_ENV === "production" ? undefined : "localhost",
             signed: true,
             path: "/",
             secure: true,
-            sameSite: "none",
+            sameSite: "none"
         });
         const token = createToken(user._id.toString(), user.email, "7d");
         const expires = new Date();
         expires.setDate(expires.getDate() + 7);
         res.cookie(COOKIE_NAME, token, {
             path: "/",
-            // domain: "localhost",
+            domain: process.env.NODE_ENV === "production" ? undefined : "localhost",
             expires,
             httpOnly: true,
             signed: true,
+            secure: true,
+            sameSite: "none"
         });
         return res
             .status(200)
-            .json({ message: "OK", name: user.name, email: user.email });
+            .json({ message: "OK", name: user.name, email: user.email, token });
     }
     catch (error) {
         console.log(error);
-        return res.status(200).json({ message: "ERROR", cause: error.message });
+        return res.status(500).json({ message: "ERROR", cause: error.message });
     }
 };
 export const verifyUser = async (req, res, next) => {
@@ -107,7 +111,7 @@ export const verifyUser = async (req, res, next) => {
     }
     catch (error) {
         console.log(error);
-        return res.status(200).json({ message: "ERROR", cause: error.message });
+        return res.status(500).json({ message: "ERROR", cause: error.message });
     }
 };
 export const userLogout = async (req, res, next) => {
@@ -122,9 +126,11 @@ export const userLogout = async (req, res, next) => {
         }
         res.clearCookie(COOKIE_NAME, {
             httpOnly: true,
-            domain: "localhost",
+            domain: process.env.NODE_ENV === "production" ? undefined : "localhost",
             signed: true,
             path: "/",
+            secure: true,
+            sameSite: "none"
         });
         return res
             .status(200)
@@ -132,7 +138,7 @@ export const userLogout = async (req, res, next) => {
     }
     catch (error) {
         console.log(error);
-        return res.status(200).json({ message: "ERROR", cause: error.message });
+        return res.status(500).json({ message: "ERROR", cause: error.message });
     }
 };
 //# sourceMappingURL=user-controllers.js.map

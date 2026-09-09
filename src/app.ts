@@ -9,10 +9,12 @@ config();
 const app = express();
 
 // CORS Configuration
-const allowedOrigins =
-  process.env.NODE_ENV === "production"
-    ? ["https://home-remedy-chatbot-1wp0.onrender.com", "https://splendorous-croissant-00662d.netlify.app"]
-    : ["http://localhost:5173"];
+const allowedOrigins = [
+  "https://home-remedy-chatbot-1wp0.onrender.com",
+  "https://splendorous-croissant-00662d.netlify.app",
+  "http://localhost:5173",
+  "http://localhost:5000",
+];
 
 app.use(
   cors({
