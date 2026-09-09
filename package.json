@@ -13,7 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@google/generative-ai": "^0.23.0",
+    "@google/genai": "^2.21.0",
     "axios": "^1.8.1",
     "backend": "file:",
     "bcrypt": "^5.1.0",
